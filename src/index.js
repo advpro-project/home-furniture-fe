@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider} from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import AuthRoutes from './microservice-1/AuthRoutes';
 
 import Example from './Example'
 import NoPage from './NoPage'
@@ -11,7 +13,8 @@ import NoPage from './NoPage'
 //dokumentasi: https://reactrouter.com/en/main/start/tutorial
 const router = createBrowserRouter([
   { path: "/", element: <Example /> },
-  { path: "*", element: <NoPage />},
+  // { path: "*", element: <NoPage />},
+  { path: "/auth/*", element: <AuthRoutes /> },
 ]);
 
 export default function App() {
