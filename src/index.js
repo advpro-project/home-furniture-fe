@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import "bootstrap/dist/css/bootstrap.min.css";
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider} from 'react-router-dom';
-import AuthRoutes from './microservice-1/AuthRoutes'
+// import AuthRoutes from './microservice-1/AuthRoutes'
 
 import Example from './Example'
 import NoPage from './NoPage'
@@ -16,8 +17,8 @@ import Microservice4Url from './microservice-4/Urls'
 const router = createBrowserRouter([
   { path: "/", element: <Example /> },
   { path: "*", element: <NoPage />},
-  { path: "/auth/*", element: <AuthRoutes/>},
-  { path: "/microservice2/*", element:<Microservice2Url />},
+  // { path: "/auth/*", element: <AuthRoutes/>},
+  { path: "/furniture/*", element:<Microservice2Url />},
   { path: "/microservice3/*", element:<Microservice3Url />},
   { path: "/microservice4/*", element:<Microservice4Url />},
 ]);
