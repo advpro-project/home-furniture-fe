@@ -1,7 +1,7 @@
 import React from 'react';
 import {Routes, route} from 'react-router-dom'
 
-const Urls = () => {
+const DelivRoutes = () => {
     return (
         <Routes>
             
@@ -9,4 +9,4 @@ const Urls = () => {
     );
 };
 
-export default Urls;
+export default DelivRoutes;
