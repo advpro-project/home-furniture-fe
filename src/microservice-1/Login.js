@@ -16,7 +16,7 @@ const Login = () => {
         };
 
         try {
-            const response = await axios.post('http://localhost:8080/auth/login', loginData);
+            const response = await axios.post('http://34.143.229.201/auth/login', loginData);
 
             if (!response.data.token) {
                 throw new Error('Login failed');
@@ -27,7 +27,7 @@ const Login = () => {
             setSuccessMessage('Login successful! Redirect to homepage in 1.5 seconds...');
 
             setTimeout(() => {
-                window.location.href = 'http://localhost:8080';
+                window.location.href = 'http://34.143.229.201/';
             }, 1500);
 
         } catch (error) {

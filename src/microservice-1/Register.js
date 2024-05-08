@@ -28,7 +28,7 @@ const Register = () => {
         };
 
         try {
-            const response = await fetch('http://localhost:8080/auth/register', {
+            const response = await fetch('http://34.143.229.201/auth/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -59,7 +59,7 @@ const Register = () => {
             console.log('User successfully registered!');
 
             setTimeout(() => {
-                window.location.href = 'http://localhost:3000/auth/login';
+                window.location.href = 'https://home-furniture-fe.vercel.app/auth/login';
             }, 1500);
 
         } catch (error) {
