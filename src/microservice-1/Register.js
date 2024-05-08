@@ -59,7 +59,7 @@ const Register = () => {
             console.log('User successfully registered!');
 
             setTimeout(() => {
-                window.location.href = 'http://localhost:3000';         // TODO: Redirect to login page
+                window.location.href = 'http://localhost:3000/auth/login';
             }, 1500);
 
         } catch (error) {
