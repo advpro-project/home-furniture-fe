@@ -5,7 +5,8 @@ import Test from './Test'
 const Urls = () => {
     return (
         <Routes>
-            <Route path='test' element={<Test />} />
+            <Route path='/test' element={<Test />} />
+            <Route path='/viewProducts' element={<viewProducts />} />
         </Routes>
     );
 };
