@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Register = () => {
+const Register = ({ setView }) => {
     const [fullName, setFullName] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState('');
     const [gender, setGender] = useState('MALE');
@@ -9,9 +9,10 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('PEMBELI');
     const [walletBalance, setWalletBalance] = useState(0);
-    const [token, setToken] = useState(null);
     const [successMessage, setSuccessMessage] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
+    const baseURL = 'http://34.143.229.201';
+    // const baseURL = 'http://localhost:8080';
 
     const handleRegister = async (e) => {
         e.preventDefault();
@@ -28,7 +29,7 @@ const Register = () => {
         };
 
         try {
-            const response = await fetch('http://34.143.229.201/auth/register', {
+            const response = await fetch(`${baseURL}/auth/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -36,17 +37,12 @@ const Register = () => {
                 body: JSON.stringify(userData)
             });
 
-            // Mengambil data JSON dari respons dan menyimpan token ke dalam variabel
-            const data = await response.json();
-            setToken(data.token);
-
             setSuccessMessage('Registration successful!');
 
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
 
-            // Clear form after successful registration
             setFullName('');
             setDateOfBirth('');
             setGender('MALE');
@@ -55,11 +51,8 @@ const Register = () => {
             setPassword('');
             setRole('PEMBELI');
 
-            // TODO: Delete this console.log
-            console.log('User successfully registered!');
-
             setTimeout(() => {
-                window.location.href = 'https://home-furniture-fe.vercel.app/auth/login';
+                setView('login');
             }, 1500);
 
         } catch (error) {
@@ -67,15 +60,12 @@ const Register = () => {
                 setErrorMessage('Please fill in all required fields.');
                 return;
             }
-
-            // TODO: Delete this console.error
-            console.error('There was a problem with the registration:', error.message);
         }
     };
 
     return (
         <div className="container">
-            <h2 className="mt-4">Register</h2>
+            <h2 className="fw-bold">Register</h2>
             <form onSubmit={handleRegister} className="mt-4">
                 <div className="mb-3">
                     <label htmlFor="fullName" className="form-label">Full Name</label>

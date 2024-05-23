@@ -4,17 +4,18 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import AuthRoutes from './microservice-1/AuthRoutes';
 
-import Example from './Example'
-import NoPage from './NoPage'
+import Register from './microservice-1/Register';
+import Login from './microservice-1/Login';
+import HomePage from "./pages/HomePage";
 
-//tulis routing disini, path --> url path; element --> element yang ingin dirender
-//dokumentasi: https://reactrouter.com/en/main/start/tutorial
 const router = createBrowserRouter([
-  { path: "/", element: <Example /> },
-  // { path: "*", element: <NoPage />},
-  { path: "/auth/*", element: <AuthRoutes /> },
+  // { path: "/", element: <Example /> },
+  { path: "/", element: <HomePage /> },
+
+  // Microservice 1 - Authentication
+  { path: "/auth/register", element: <Register /> },
+  { path: "/auth/login", element: <Login /> },
 ]);
 
 export default function App() {
@@ -24,7 +25,4 @@ export default function App() {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
