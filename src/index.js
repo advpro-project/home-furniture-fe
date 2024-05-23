@@ -10,7 +10,6 @@ import Login from './microservice-1/Login';
 import HomePage from "./pages/HomePage";
 
 const router = createBrowserRouter([
-  // { path: "/", element: <Example /> },
   { path: "/", element: <HomePage /> },
 
   // Microservice 1 - Authentication
