@@ -3,22 +3,22 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider} from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import Register from './microservice-1/Register';
+import Login from './microservice-1/Login';
+import HomePage from "./pages/HomePage";
 //import AuthRoutes from './microservice-1/AuthRoutes'
 
-import Example from './Example'
-import NoPage from './NoPage'
-import Microservice2Url from './microservice-2/Urls'
-import Microservice3Url from './microservice-3/Urls'
 import DelivRoutes from './microservice-4/DelivRoutes'
 
-//tulis routing disini, path --> url path; element --> element yang ingin dirender
-//dokumentasi: https://reactrouter.com/en/main/start/tutorial
 const router = createBrowserRouter([
-  { path: "/", element: <Example /> },
-  { path: "*", element: <NoPage />},
-  //{ path: "/auth/*", element: <AuthRoutes/>},
-  { path: "/microservice2/*", element:<Microservice2Url />},
-  { path: "/microservice3/*", element:<Microservice3Url />},
+  { path: "/", element: <HomePage /> },
+
+  // Microservice 1 - Authentication
+  { path: "/auth/register", element: <Register /> },
+  { path: "/auth/login", element: <Login /> },
+ 
   { path: "/delivery/*", element:<DelivRoutes />},
 ]);
 
@@ -29,7 +29,4 @@ export default function App() {
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(<App />);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
