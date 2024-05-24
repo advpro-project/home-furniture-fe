@@ -8,6 +8,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Register from './microservice-1/Register';
 import Login from './microservice-1/Login';
 import HomePage from "./pages/HomePage";
+//import AuthRoutes from './microservice-1/AuthRoutes'
+
+import DelivRoutes from './microservice-4/DelivRoutes'
 
 const router = createBrowserRouter([
   { path: "/", element: <HomePage /> },
@@ -15,6 +18,8 @@ const router = createBrowserRouter([
   // Microservice 1 - Authentication
   { path: "/auth/register", element: <Register /> },
   { path: "/auth/login", element: <Login /> },
+ 
+  { path: "/delivery/*", element:<DelivRoutes />},
 ]);
 
 export default function App() {
