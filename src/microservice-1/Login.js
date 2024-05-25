@@ -25,7 +25,7 @@ const Login = ({ setView }) => {
             }
 
             localStorage.setItem('token', response.data.token);
-            localStorage.setItem('userData', response.data.userData);
+            localStorage.setItem('userData', JSON.stringify(response.data.userData));
 
             setSuccessMessage('Login successful! Redirect to homepage in 1.5 seconds...');
 
@@ -34,9 +34,11 @@ const Login = ({ setView }) => {
             }, 1500);
 
         } catch (error) {
-
-            setErrorMessage(error.message);
-            console.error('There was a problem with the login:', error.message);
+            if (error.message === 'Request failed with status code 401') {
+                setErrorMessage('Email atau password Anda salah!');
+            } else {
+                setErrorMessage(error.message);
+            }
 
         }
     };
