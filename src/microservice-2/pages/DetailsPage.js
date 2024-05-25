@@ -8,10 +8,7 @@ function DetailsPage() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch('http://localhost:8080/furniture/1', {
-          mode: 'no-cors'
-        });
-        console.log(response);
+        const response = await fetch('http://localhost:8080/furniture/1');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
