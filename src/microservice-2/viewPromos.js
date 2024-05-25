@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from 'react';
 
 function ViewPromos() {
-    const [products, setProducts] = useState([]);
+    const [promos, setpromos] = useState([]);
 
     useEffect(() => {
-        const fetchProducts = async () => {
+        const fetchpromos = async () => {
             try {
-                const response = await fetch('https://localhost:8080/promos/all');
+                const response = await fetch('http://35.226.59.207/promos/all');
                 const data = await response.json();
-                setProducts(data);
+                setpromos(data);
             } catch (error) {
                 console.log(error);
             }
         };
     
-        fetchProducts();
+        fetchpromos();
     }, []);
 
     return (
         <div>
-            <h1>Products</h1>
+            <h1>promos</h1>
             <ul>
-                {products.map(product => (
-                    <div key={product.id}>
-                        <h2>{product.name}</h2>
-                        <p>Description: {product.description}</p>
+                {promos.map(promo => (
+                    <div key={promo.id}>
+                        <h2>{promo.name}</h2>
+                        <p>Description: {promo.description}</p>
                     </div>
                 ))}
             </ul>
