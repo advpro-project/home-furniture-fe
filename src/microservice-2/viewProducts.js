@@ -6,7 +6,7 @@ function ViewProducts() {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('http://35.226.59.207/furniture/getFurnitures');
+                const response = await fetch('http://35.226.59.207/promos/all');
                 const data = await response.json();
                 setProducts(data);
             } catch (error) {
@@ -17,11 +17,7 @@ function ViewProducts() {
         fetchProducts();
     }, []);
 
-    return renderProducts(products);w
-}
-
-function editProduct() {
-    
+    return renderProducts(products);
 }
 
 function renderProducts(products) {
