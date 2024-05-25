@@ -37,8 +37,6 @@ const Register = ({ setView }) => {
                 body: JSON.stringify(userData)
             });
 
-            setSuccessMessage('Registration successful!');
-
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -51,14 +49,20 @@ const Register = ({ setView }) => {
             setPassword('');
             setRole('PEMBELI');
 
+            setSuccessMessage('Registration successful!');
+
             setTimeout(() => {
                 setView('login');
             }, 1500);
 
         } catch (error) {
+            //400 Bad Request
+            console.log(error.message);
             if (!fullName || !dateOfBirth || !username || !email || !password) {
                 setErrorMessage('Please fill in all required fields.');
                 return;
+            } else if (error.message === 'Network response was not ok') {
+                setErrorMessage('Email Anda sudah terdaftar!');
             }
         }
     };

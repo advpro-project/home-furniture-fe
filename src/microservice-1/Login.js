@@ -34,9 +34,11 @@ const Login = ({ setView }) => {
             }, 1500);
 
         } catch (error) {
-
-            setErrorMessage(error.message);
-            console.error('There was a problem with the login:', error.message);
+            if (error.message === 'Request failed with status code 401') {
+                setErrorMessage('Email atau password Anda salah!');
+            } else {
+                setErrorMessage(error.message);
+            }
 
         }
     };
