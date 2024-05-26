@@ -19,11 +19,9 @@ function NavBar({ setView }) {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        {userLoggedIn && (
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/" onClick={() => setView('products')}>Products</Link>
-                            </li>
-                        )}
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/furniture/list" onClick={() => setView('products')}>Furniture</Link>
+                        </li>
                     </ul>
                     <ul className="navbar-nav ml-auto">
                         {!userLoggedIn ? (

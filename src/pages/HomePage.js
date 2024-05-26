@@ -16,9 +16,6 @@ function HomePage() {
         case 'register':
             content = <Register setView={setView} />;
             break;
-        case 'products':
-            content = <div>Products Page - coming soon</div>; // TODO:
-            break;
         default:
             content = (
                 <header id="hero-outer" className="p-4 rounded-3">
