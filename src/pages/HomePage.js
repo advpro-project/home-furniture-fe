@@ -4,6 +4,8 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Login from '../microservice-1/Login';
 import Register from '../microservice-1/Register';
+import DelivRoutes from '../microservice-4/DelivRoutes';
+import DeliveryForm from '../microservice-4/DeliveryForm';
 
 function HomePage() {
     const [view, setView] = useState('home');
@@ -18,6 +20,12 @@ function HomePage() {
             break;
         case 'products':
             content = <div>Products Page - coming soon</div>; // TODO:
+            break;
+        case 'delivery':
+            content = <DelivRoutes setView={setView} />;
+            break;
+        case 'createDelivery':
+            content = <DeliveryForm setView={setView} />;
             break;
         default:
             content = (

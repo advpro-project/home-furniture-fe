@@ -12,39 +12,47 @@ function NavBar({ setView }) {
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <div className="container-fluid">
-                <Link className="navbar-brand fw-bold" to="/" onClick={() => setView('home')}>HoomGroom</Link>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        {userLoggedIn && (
+        <div className="container-fluid">
+            <Link className="navbar-brand fw-bold" to="/" onClick={() => setView('home')}>HoomGroom</Link>
+            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNav">
+                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                    {userLoggedIn && (
+                        <>
                             <li className="nav-item">
                                 <Link className="nav-link" to="/" onClick={() => setView('products')}>Products</Link>
                             </li>
-                        )}
-                    </ul>
-                    <ul className="navbar-nav ml-auto">
-                        {!userLoggedIn ? (
-                            <>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/" onClick={() => setView('login')}>Login</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/" onClick={() => setView('register')}>Register</Link>
-                                </li>
-                            </>
-                        ) : (
                             <li className="nav-item">
-                                <button className="btn btn-link nav-link" onClick={handleLogout}>Logout</button>
+                                <Link className="nav-link" to="/" onClick={() => setView('delivery')}>Delivery</Link>
                             </li>
-                        )}
-                    </ul>
-                </div>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/" onClick={() => setView('createDelivery')}>Create Delivery</Link>
+                            </li>
+                        </>
+                    )}
+                </ul>
+                <ul className="navbar-nav ml-auto">
+                    {!userLoggedIn ? (
+                        <>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/" onClick={() => setView('login')}>Login</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/" onClick={() => setView('register')}>Register</Link>
+                            </li>
+                        </>
+                    ) : (
+                        <li className="nav-item">
+                            <button className="btn btn-link nav-link" onClick={handleLogout}>Logout</button>
+                        </li>
+                    )}
+                </ul>
             </div>
-        </nav>
-    );
+        </div>
+    </nav>
+);
 }
 
 export default NavBar;
