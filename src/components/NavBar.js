@@ -27,10 +27,13 @@ function NavBar() {
                         {userRole === "ADMIN" ? (
                             <>
                             <li className="nav-item">
-                                <Link className="nav-link" to="...">Manage Furniture</Link>
+                                <Link className="nav-link" to="/furniture/products">Manage Furniture</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="...">Manage Promo Code</Link>
+                                <Link className="nav-link" to="/furniture/promos">Manage Promo Code</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/furniture/statProducts">Furniture statistics</Link>
                             </li>
                             </>
                         ) : null}
