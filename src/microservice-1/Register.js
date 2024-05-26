@@ -8,7 +8,6 @@ const Register = ({ setView }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('PEMBELI');
-    const [walletBalance, setWalletBalance] = useState(0);
     const [successMessage, setSuccessMessage] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
     const baseURL = 'http://34.143.229.201';
@@ -25,7 +24,6 @@ const Register = ({ setView }) => {
             email,
             password,
             role,
-            walletBalance
         };
 
         try {
@@ -36,8 +34,6 @@ const Register = ({ setView }) => {
                 },
                 body: JSON.stringify(userData)
             });
-
-            setSuccessMessage('Registration successful!');
 
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -51,6 +47,8 @@ const Register = ({ setView }) => {
             setPassword('');
             setRole('PEMBELI');
 
+            setSuccessMessage('Registration successful!');
+
             setTimeout(() => {
                 setView('login');
             }, 1500);
@@ -59,6 +57,8 @@ const Register = ({ setView }) => {
             if (!fullName || !dateOfBirth || !username || !email || !password) {
                 setErrorMessage('Please fill in all required fields.');
                 return;
+            } else if (error.message === 'Network response was not ok') {
+                setErrorMessage('Email Anda sudah terdaftar!');
             }
         }
     };

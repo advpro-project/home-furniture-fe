@@ -16,9 +16,6 @@ function HomePage() {
         case 'register':
             content = <Register setView={setView} />;
             break;
-        case 'products':
-            content = <div>Products Page - coming soon</div>; // TODO:
-            break;
         default:
             content = (
                 <header id="hero-outer" className="p-4 rounded-3">
@@ -26,7 +23,7 @@ function HomePage() {
                         <h1 className="display-4 fw-bold">🏠 HoomGroom 🛠</h1>
                         <p className="col-md-8 lead">Temukan Kesempurnaan dalam Perabotan Rumah Anda!</p>
                         <figure>
-                            <figcaption className="blockquote-footer">
+                            <figcaption className="blockquote-footer mt-3">
                                 <cite title="Source Title">Kelompok A06</cite>
                             </figcaption>
                         </figure>
