@@ -24,7 +24,6 @@ const Login = ({ setView }) => {
                 throw new Error('Login failed');
             }
 
-            localStorage.setItem('token', response.data.token);
             localStorage.setItem('userData', JSON.stringify(response.data.userData));
 
             setSuccessMessage('Login successful! Redirect to homepage in 1.5 seconds...');
