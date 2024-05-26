@@ -16,19 +16,22 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Register from './microservice-1/Register';
 import Microservice1Url  from './microservice-1/Urls';
 import HomePage from "./pages/HomePage";
+
 import Microservice2Url from "./microservice-2/Urls";
 import Microservice3Url from "./microservice-3/Urls";
-import Microservice4Url from "./microservice-4/Urls";
+import DelivRoutes from './microservice-4/DelivRoutes'
 
 const router = createBrowserRouter([
+
   { path: "/", element:<Layout />, 
   children: [
     { path: "/", element:<HomePage  />},
     { path: "furniture/*", element:<Microservice2Url />},
     { path: "microservice3/*", element:<Microservice3Url />},
-    { path: "microservice4/*", element:<Microservice4Url />},
+    { path: "/delivery/*", element:<DelivRoutes />},
   ]},
   { path: "auth/*", element:<Microservice1Url />},
+
 ]);
 
 export default function App() {

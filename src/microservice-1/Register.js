@@ -8,7 +8,6 @@ const Register = ({ setView }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('PEMBELI');
-    const [walletBalance, setWalletBalance] = useState(0);
     const [successMessage, setSuccessMessage] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
     const baseURL = 'http://34.143.229.201';
@@ -25,7 +24,6 @@ const Register = ({ setView }) => {
             email,
             password,
             role,
-            walletBalance
         };
 
         try {
@@ -56,8 +54,6 @@ const Register = ({ setView }) => {
             }, 1500);
 
         } catch (error) {
-            //400 Bad Request
-            console.log(error.message);
             if (!fullName || !dateOfBirth || !username || !email || !password) {
                 setErrorMessage('Please fill in all required fields.');
                 return;
