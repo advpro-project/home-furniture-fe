@@ -4,7 +4,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider} from 'react-router-dom';
+
+// design and icon
+import './fontAwesome';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 // router import
 import Register from './microservice-1/Register';
@@ -27,7 +31,11 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
-  return <RouterProvider router={router} />;
+  return (
+  <div>
+    <RouterProvider router={router} />;
+  </div>
+  )
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
