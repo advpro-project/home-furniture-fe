@@ -1,1 +1,1 @@
-microservices-2
+microservices-2 for CRUD Furniture and Promo
