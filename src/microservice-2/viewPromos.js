@@ -20,18 +20,27 @@ function ViewPromos() {
     }, []);
 
     return (
-        <div>
-            <h1>Promos</h1>
-            <ul>
-                {promos.map(promo => (
-                    <div key={promo.id}>
-                        <h2>{promo.name}</h2>
-                        <p>Description: {promo.description}</p>
-                        <p>Minimum Purchase: {promo.minimumPurchase}</p>
-                        <p>Valid Until: {promo.validUntil}</p>
+        <div className="m-3">
+            <h1>Promo Codes</h1>
+            <button className="btn btn-secondary m-1" >Add new Promo code</button>
+            <div className="row">
+                {Object.values(promos).map(promo => (
+                    <div key={promo.id} className="col-md-4 p-3">
+                        <div className="card">
+                            <div className="card-body">
+                                <h5 className="card-title">{promo.name}</h5>
+                                <p className="card-text">{promo.description}</p>
+                                <button className="btn btn-secondary m-1" >Update</button>
+                                <button className="btn btn-danger m-1" >Delete</button>
+                            </div>
+                            <ul className="list-group list-group-flush">
+                                <li className="list-group-item">Minimum Purchase: {promo.minimumPurchase}</li>
+                                <li className="list-group-item">Valid Until: {promo.validUntil}</li>
+                            </ul>
+                        </div>
                     </div>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 }
