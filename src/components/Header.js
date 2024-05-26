@@ -1,10 +1,10 @@
 import React from 'react';
 import NavBar from './NavBar';
 
-function Header({ setView }) {
+function Header() {
     return (
         <header>
-            <NavBar setView={setView} />
+            <NavBar />
         </header>
     );
 }
