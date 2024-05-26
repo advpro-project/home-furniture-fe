@@ -8,7 +8,6 @@ const Register = ({ setView }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('PEMBELI');
-    const [walletBalance, setWalletBalance] = useState(0);
     const [successMessage, setSuccessMessage] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
     const baseURL = 'http://34.143.229.201';
@@ -25,7 +24,6 @@ const Register = ({ setView }) => {
             email,
             password,
             role,
-            walletBalance
         };
 
         try {
@@ -52,12 +50,10 @@ const Register = ({ setView }) => {
             setSuccessMessage('Registration successful!');
 
             setTimeout(() => {
-                setView('login');
+                window.location.href = '/auth/login';
             }, 1500);
 
         } catch (error) {
-            //400 Bad Request
-            console.log(error.message);
             if (!fullName || !dateOfBirth || !username || !email || !password) {
                 setErrorMessage('Please fill in all required fields.');
                 return;
@@ -69,7 +65,7 @@ const Register = ({ setView }) => {
 
     return (
         <div className="container">
-            <h2 className="fw-bold">Register</h2>
+            <h2 className="display-6 fw-bold">Register</h2>
             <form onSubmit={handleRegister} className="mt-4">
                 <div className="mb-3">
                     <label htmlFor="fullName" className="form-label">Full Name</label>

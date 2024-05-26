@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const isLoggedIn = () => {
-    return localStorage.getItem('token') !== null;
+    return localStorage.getItem('userData') !== null;
 };
 
 export const logout = async () => {
