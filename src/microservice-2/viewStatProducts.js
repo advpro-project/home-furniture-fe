@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
+const baseURL = 'http://35.226.59.207';
+// const baseURL = 'http://localhost:8080';
 
-function ViewProducts() {
+function ViewStatProducts() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('http://35.226.59.207/furniture/statistics/top10');
+                const response = await fetch(`${baseURL}/furniture/statistics/top10`);
                 const data = await response.json();
                 setProducts(data);
             } catch (error) {
@@ -38,4 +40,4 @@ function ViewProducts() {
     );
 }
 
-export default ViewProducts;
+export default ViewStatProducts;
