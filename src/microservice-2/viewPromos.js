@@ -5,6 +5,24 @@ const baseURL = 'http://35.226.59.207';
 function ViewPromos() {
     const [promos, setPromos] = useState([]);
 
+    const [showUpdate, setShowUpdate] = useState(false);
+    const [currentPromo, setCurrentPromo] = useState({});
+
+    const [showAdd, setShowAdd] = useState(false);  
+    const [newPromo, setNewPromo] = useState({});
+
+    const handleShow = (promo) => {
+        setCurrentPromo(promo);
+        setShowUpdate(true);
+      };
+      
+    const handleClose = () => {
+        setShowUpdate(false);
+    };
+
+    const handleAddShow = () => setShowAdd(true);
+    const handleAddClose = () => setShowAdd(false);
+
     const fetchPromos = async () => {
         try {
             const response = await fetch(`${baseURL}/promos/all`);
@@ -14,7 +32,6 @@ function ViewPromos() {
             console.log(error);
         }
     };
-
     
     // Get a promo by ID
     const getPromo = async (id) => {
@@ -44,6 +61,7 @@ function ViewPromos() {
                 throw new Error('HTTP error ' + response.status);
             }
             const data = await response.json();
+            await fetchPromos();
             return data;
         } catch (error) {
             console.error('Error:', error);
@@ -64,6 +82,7 @@ function ViewPromos() {
                 throw new Error('HTTP error ' + response.status);
             }
             const data = await response.json();
+            await fetchPromos();
             return data;
         } catch (error) {
             console.error('Error:', error);
@@ -80,6 +99,7 @@ function ViewPromos() {
                 throw new Error('HTTP error ' + response.status);
             }
             const data = await response.json();
+            await fetchPromos();
             return data;
         } catch (error) {
             console.error('Error:', error);
@@ -93,7 +113,7 @@ function ViewPromos() {
     return (
         <div className="m-3">
             <h1>Promo Codes</h1>
-            <button className="btn btn-secondary m-1" >Add new Promo code</button>
+            <button className="btn btn-secondary m-1" onClick={handleAddShow}>Add new Promo code</button>
             <div className="row">
                 {Object.values(promos).map(promo => (
                     <div key={promo.id} className="col-md-4 p-3">
@@ -101,8 +121,8 @@ function ViewPromos() {
                             <div className="card-body">
                                 <h5 className="card-title">{promo.name}</h5>
                                 <p className="card-text">{promo.description}</p>
-                                <button className="btn btn-secondary m-1" >Update</button>
-                                <button className="btn btn-danger m-1" >Delete</button>
+                                <button className="btn btn-secondary m-1" onClick={() => handleShow(promo)}>Update</button>
+                                <button className="btn btn-danger m-1" onClick={() => deletePromo(promo.internalId)}>Delete</button>
                             </div>
                             <ul className="list-group list-group-flush">
                                 <li className="list-group-item">Minimum Purchase: {promo.minimumPurchase}</li>
@@ -114,7 +134,7 @@ function ViewPromos() {
             </div>
 
             {/* modal untuk update promo */}
-            <div className={`modal ${show ? 'show d-block' : 'd-none'}`} tabIndex="-1">
+            <div className={`modal ${showUpdate ? 'show d-block' : 'd-none'}`} tabIndex="-1">
             <div className="modal-dialog">
                 <div className="modal-content">
                 <div className="modal-header">
@@ -123,20 +143,20 @@ function ViewPromos() {
                 <div className="modal-body">
                     <form>
                         <div className="form-group">
-                            <label htmlFor="promoName">promo Name</label>
+                            <label htmlFor="promoName">Promo Name</label>
                             <input type="text" className="form-control" id="promoName" defaultValue={currentPromo.name} onChange={e => setCurrentPromo({...currentPromo, name: e.target.value})}/>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="promoDescription">promo Description</label>
+                            <label htmlFor="promoDescription">Promo Description</label>
                             <input type="text" className="form-control" id="promoName" defaultValue={currentPromo.description} onChange={e => setCurrentPromo({...currentPromo, description: e.target.value})}/>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="promoImageURL">promo imageURL</label>
-                            <input type="text" className="form-control" id="promoName" defaultValue={currentPromo.imageUrl} onChange={e => setCurrentPromo({...currentPromo, imageUrl: e.target.value})}/>
+                            <label htmlFor="promoImageURL">Promo Minimum Purchase</label>
+                            <input type="text" className="form-control" id="promoName" defaultValue={currentPromo.minimumPurchase} onChange={e => setCurrentPromo({...currentPromo, minimumPurchase: e.target.value})}/>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="promoSoldQuantity">promo Sold Quantity</label>
-                            <input type="text" className="form-control" id="promoName" defaultValue={currentPromo.soldQuantity} onChange={e => setCurrentPromo({...currentPromo, soldQuantity: e.target.value})}/>
+                            <label htmlFor="promoSoldQuantity">Promo Valid Until</label>
+                            <input type="text" className="form-control" id="promoName" defaultValue={currentPromo.validUntil} onChange={e => setCurrentPromo({...currentPromo, validUntil: e.target.value})}/>
                         </div>
                     </form>
                 </div>
@@ -149,7 +169,7 @@ function ViewPromos() {
             </div>
 
             {/* modal untuk add promo */}
-            <div className={`modal ${showAddModal ? 'show d-block' : 'd-none'}`} tabIndex="-1">
+            <div className={`modal ${showAdd ? 'show d-block' : 'd-none'}`} tabIndex="-1">
             <div className="modal-dialog">
                 <div className="modal-content">
                 <div className="modal-header">
@@ -158,26 +178,26 @@ function ViewPromos() {
                 <div className="modal-body">
                     <form>
                         <div className="form-group">
-                            <label htmlFor="promoName">promo Name</label>
-                            <input type="text" className="form-control" id="promoName" onChange={e => setNewpromo({...newpromo, name: e.target.value})}/>
+                            <label htmlFor="promoName">Promo Name</label>
+                            <input type="text" className="form-control" id="promoName" onChange={e => setNewPromo({...newPromo, name: e.target.value})}/>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="promoDescription">promo Description</label>
-                            <input type="text" className="form-control" id="promoName" onChange={e => setNewpromo({...newpromo, description: e.target.value})}/>
+                            <label htmlFor="promoDescription">Promo Description</label>
+                            <input type="text" className="form-control" id="promoName" onChange={e => setNewPromo({...newPromo, description: e.target.value})}/>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="promoImageURL">promo imageURL</label>
-                            <input type="text" className="form-control" id="promoName" onChange={e => setNewpromo({...newpromo, imageUrl: e.target.value})}/>
+                            <label htmlFor="promoImageURL">Promo Minimum Purchase</label>
+                            <input type="text" className="form-control" id="promoName" onChange={e => setNewPromo({...newPromo, minimumPurchase: e.target.value})}/>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="promoSoldQuantity">promo Sold Quantity</label>
-                            <input type="text" className="form-control" id="promoName" onChange={e => setNewpromo({...newpromo, soldQuantity: e.target.value})}/>
+                            <label htmlFor="promoSoldQuantity">Promo Valid Until</label>
+                            <input type="text" className="form-control" id="promoName" onChange={e => setNewPromo({...newPromo, validUntil: e.target.value})}/>
                         </div>
                     </form>
                 </div>
                 <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" onClick={handleAddClose}>Close</button>
-                    <button type="button" className="btn btn-secondary" onClick={() => { addPromo(newpromo); handleClose(); }}>Save promo</button>
+                    <button type="button" className="btn btn-secondary" onClick={() => { addPromo(newPromo); handleClose(); }}>Save promo</button>
                 </div>
                 </div>
             </div>

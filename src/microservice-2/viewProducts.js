@@ -167,16 +167,16 @@ function ViewProducts() {
                         <div className="form-group">
                             <label htmlFor="productType">Product Type</label>
                             <select className="form-control" id="productType" defaultValue={currentProduct.type} onChange={e => setCurrentProduct({...currentProduct, type: e.target.value})}>
-                                <option value="type1">Seating</option>
-                                <option value="type2">Tables</option>
-                                <option value="type3">Storage</option>
-                                <option value="type4">Beds</option>
-                                <option value="type5">Desks</option>
-                                <option value="type6">Outdoor Furniture</option>
-                                <option value="type7">Entertainment Units</option>
-                                <option value="type8">Accent Furniture</option>
-                                <option value="type9">Office Furniture</option>
-                                <option value="type10">Dining Furniture</option>
+                                <option value="Seating">Seating</option>
+                                <option value="Tables">Tables</option>
+                                <option value="Storage">Storage</option>
+                                <option value="Beds">Beds</option>
+                                <option value="Desks">Desks</option>
+                                <option value="Outdoor Furniture">Outdoor Furniture</option>
+                                <option value="Entertainment Units">Entertainment Units</option>
+                                <option value="Accent Furniture">Accent Furniture</option>
+                                <option value="Office Furniture">Office Furniture</option>
+                                <option value="Dining Furniture">Dining Furniture</option>
                             </select>
                         </div>
                         <div className="form-group">
@@ -202,8 +202,8 @@ function ViewProducts() {
                         <div className="form-group">
                             <label htmlFor="productHasDiscount">Product hasDiscount</label>
                             <select className="form-control" id="productHasDiscount" defaultValue={currentProduct.hasDiscount} onChange={e => setCurrentProduct({...currentProduct, hasDiscount: e.target.value})}>
-                                <option value="type1">true</option>
-                                <option value="type2">false</option>
+                                <option value="true">true</option>
+                                <option value="false">false</option>
                             </select>
                         </div>
                     </form>
@@ -232,16 +232,16 @@ function ViewProducts() {
                         <div className="form-group">
                             <label htmlFor="productType">Product Type</label>
                             <select className="form-control" id="productType" onChange={e => setNewProduct({...newProduct, type: e.target.value})}>
-                                <option value="type1">Seating</option>
-                                <option value="type2">Tables</option>
-                                <option value="type3">Storage</option>
-                                <option value="type4">Beds</option>
-                                <option value="type5">Desks</option>
-                                <option value="type6">Outdoor Furniture</option>
-                                <option value="type7">Entertainment Units</option>
-                                <option value="type8">Accent Furniture</option>
-                                <option value="type9">Office Furniture</option>
-                                <option value="type10">Dining Furniture</option>
+                                <option value="Seating">Seating</option>
+                                <option value="Tables">Tables</option>
+                                <option value="Storage">Storage</option>
+                                <option value="Beds">Beds</option>
+                                <option value="Desks">Desks</option>
+                                <option value="Outdoor Furniture">Outdoor Furniture</option>
+                                <option value="Entertainment Units">Entertainment Units</option>
+                                <option value="Accent Furniture">Accent Furniture</option>
+                                <option value="Office Furniture">Office Furniture</option>
+                                <option value="Dining Furniture">Dining Furniture</option>
                             </select>
                         </div>
                         <div className="form-group">
@@ -267,8 +267,8 @@ function ViewProducts() {
                         <div className="form-group">
                             <label htmlFor="productHasDiscount">Product hasDiscount</label>
                             <select className="form-control" id="productHasDiscount" onChange={e => setNewProduct({...newProduct, hasDiscount: e.target.value})}>
-                                <option value="type1">true</option>
-                                <option value="type2">false</option>
+                                <option value="true">true</option>
+                                <option value="false">false</option>
                             </select>
                         </div>
                     </form>
