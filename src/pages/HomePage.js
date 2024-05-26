@@ -1,5 +1,9 @@
 import './HomePage.css';
 import Footer from '../components/Footer';
+import Login from '../microservice-1/Login';
+import Register from '../microservice-1/Register';
+import DelivRoutes from '../microservice-4/DelivRoutes';
+import DeliveryForm from '../microservice-4/DeliveryForm';
 
 function HomePage() {
 

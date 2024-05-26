@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
-const DeliveryStatusForm = ({ currentStatus, onStatusChange }) => {
+const DeliveryStatusForm = ({ kodeResi, currentStatus, onStatusChange }) => {
   const [newStatus, setNewStatus] = useState(currentStatus);
 
   const handleChange = (e) => {
     setNewStatus(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onStatusChange(newStatus);
+    try {
+      await axios.put(`/updateStatus/${kodeResi}/status`, { newStatus });
+      onStatusChange(kodeResi, newStatus);
+    } catch (error) {
+      console.error('Error updating delivery status:', error);
+    }
   };
 
   return (

@@ -27,16 +27,28 @@ function NavBar() {
                         {userRole === "ADMIN" ? (
                             <>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/furniture/products">Manage Furniture</Link>
+                                <Link className="nav-link" to="...">Manage Furniture</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/furniture/promos">Manage Promo Code</Link>
+                                <Link className="nav-link" to="...">Manage Promo Code</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/furniture/statProducts">Furniture statistics</Link>
+                                <Link className="nav-link" to="...">Admin Track Delivery</Link>
                             </li>
                             </>
-                        ) : null}
+                        ) : (null)}
+
+                        {userRole === "PEMBELI" ? (
+                            <>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="...">Pembeli Track Delivery</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="...">Create Delivery</Link>
+                            </li>
+                            </>
+                        ) : (null)}
+
                     </ul>
                     <ul className="navbar-nav ml-auto">
                         {!userLoggedIn ? (
@@ -49,15 +61,15 @@ function NavBar() {
                                 </li>
                             </>
                         ) : (
-                            <li className="nav-item">
-                                <button className="btn btn-link nav-link" onClick={handleLogout}>Logout</button>
-                            </li>
-                        )}
-                    </ul>
-                </div>
+                        <li className="nav-item">
+                            <button className="btn btn-link nav-link" onClick={handleLogout}>Logout</button>
+                        </li>
+                    )}
+                </ul>
             </div>
-        </nav>
-    );
+        </div>
+    </nav>
+);
 }
 
 export default NavBar;
