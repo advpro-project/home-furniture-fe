@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Footer from '../components/Footer';
 const baseURL = 'http://35.226.59.207';
 // const baseURL = 'http://localhost:8080';
 
@@ -10,6 +12,30 @@ function ViewProducts() {
 
     const [showAddModal, setShowAddModal] = useState(false);
     const [newProduct, setNewProduct] = useState({});
+
+    const [totalPage, setTotalPage] = useState(0);
+
+    const [inputValues, setInputValues] = useState({
+        name: '',
+        type: 'All',
+        discount: false,
+        priceOrder: 'default',
+        pageNumber: 1,
+    });
+
+    const incrementPageNumber = () => {
+        setInputValues(prevValues => ({
+            ...prevValues,
+            pageNumber: prevValues.pageNumber + 1
+        }));
+    }
+
+    const decrementPageNumber = () => {
+        setInputValues(prevValues => ({
+            ...prevValues,
+            pageNumber: prevValues.pageNumber - 1
+        }));
+    }
 
     const handleShow = (product) => {
         setCurrentProduct(product);
@@ -25,18 +51,22 @@ function ViewProducts() {
 
     const fetchProducts = async () => {
         try {
-            const response = await fetch(`${baseURL}/furniture/list`);
+            const response = await fetch(`http://35.226.59.207/furniture/list?pageNumber=${inputValues.pageNumber}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
             const data = await response.json();
             setProducts(data.content);
+            setTotalPage(data.totalPages);
         } catch (error) {
             console.log(error);
         }
     };
 
     const updateProduct = async (id, updatedProduct) => {
-        console.log('updateProduct called with id:', id, 'and updatedProduct:', updatedProduct);
         try {
-            console.log('About to fetch...');
             const response = await fetch(`${baseURL}/furniture/update/${id}`, {
                 method: 'PUT',
                 headers: {
@@ -44,19 +74,15 @@ function ViewProducts() {
                 },
                 body: JSON.stringify(updatedProduct),
             });
-            
-            console.log('Fetch completed. Response:', response);
 
             if (!response.ok) {
                 throw new Error('HTTP error ' + response.status);
             }
-    
-            console.log('Response OK. Parsing JSON...');
+            
             const data = await response.json();
-            console.log('JSON parsed. Data:', data);
-
-            console.log('Updating products...');
+            
             await fetchProducts();
+
             console.log('Products updated.');
 
             return data;
@@ -122,14 +148,43 @@ function ViewProducts() {
 
     useEffect(() => {
         fetchProducts();
-    }, []);
+    }, [inputValues]);
+
+    let paginateButton;
+    if (totalPage !== 1 && totalPage !== 0) {
+        if (inputValues.pageNumber === totalPage) {
+            paginateButton = <button className="btn bg-gray-900 text-white hover:bg-cyan-700" onClick={decrementPageNumber}>
+                                <FontAwesomeIcon icon={['fas', 'chevron-left']} />
+                            </button>
+        } 
+        
+        else if (inputValues.pageNumber === 1) {
+            paginateButton = <button className="btn bg-gray-900 text-white hover:bg-cyan-700" onClick={incrementPageNumber}>
+                                <FontAwesomeIcon icon={['fas', 'chevron-right']} />
+                            </button>             
+        }
+        
+        else {
+            paginateButton = <div>
+                                <button className="btn bg-gray-900 text-white hover:bg-cyan-700" onClick={decrementPageNumber}>
+                                    <FontAwesomeIcon icon={['fas', 'chevron-left']} />
+                                </button>
+                                <button className="btn bg-gray-900 text-white hover:bg-cyan-700" onClick={incrementPageNumber}>
+                                    <FontAwesomeIcon icon={['fas', 'chevron-right']} />
+                                </button> 
+                             </div>
+        }
+    }
 
     return (
         <div className="m-3">
 
             {/* display all products */}
-            <h1>Furniture Products</h1>
+            <h1 class="display-4" >Furniture Products</h1>
             <button className="btn btn-secondary m-1" onClick={handleAddShow}>Add new Product</button>
+            <div className='my-6 ml-4'>
+                {paginateButton}
+            </div>
             <div className="row">
                 {Object.values(products).map(product => (
                     <div key={product.id} className="col-md-4 p-3">
@@ -282,7 +337,7 @@ function ViewProducts() {
                 </div>
             </div>
             </div>
-
+            <Footer/>
         </div>
     );
 }

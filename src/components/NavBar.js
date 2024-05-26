@@ -38,6 +38,7 @@ function NavBar({ setView }) {
                                 <button className="btn btn-link nav-link" onClick={handleLogout}>Logout</button>
                             </li>
                         )}
+                        const userrole = localStorage.getItem('role');
                     </ul>
                 </div>
             </div>

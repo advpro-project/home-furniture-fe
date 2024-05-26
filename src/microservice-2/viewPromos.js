@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Footer from '../components/Footer';
 const baseURL = 'http://35.226.59.207';
 // const baseURL = 'http://localhost:8080';
 
@@ -50,7 +51,7 @@ function ViewPromos() {
     // Add a new promo
     const addPromo = async (newPromo) => {
         try {
-            const response = await fetch(`${baseURL}/register`, {
+            const response = await fetch(`${baseURL}/promos/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -112,7 +113,7 @@ function ViewPromos() {
 
     return (
         <div className="m-3">
-            <h1>Promo Codes</h1>
+            <h1 class="display-4" >Promo Codes</h1>
             <button className="btn btn-secondary m-1" onClick={handleAddShow}>Add new Promo code</button>
             <div className="row">
                 {Object.values(promos).map(promo => (
@@ -202,7 +203,7 @@ function ViewPromos() {
                 </div>
             </div>
             </div>
-
+            <Footer/>
         </div>
     );
 }

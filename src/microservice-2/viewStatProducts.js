@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Footer from '../components/Footer';
 const baseURL = 'http://35.226.59.207';
 // const baseURL = 'http://localhost:8080';
 
@@ -21,7 +22,7 @@ function ViewStatProducts() {
 
     return (
         <div className="m-3">
-            <h1>Top 10 Furniture Products</h1>
+            <h1 class="display-4" >Top 10 Furniture Products</h1>
             <div className="row">
                 {Object.values(products).map(product => (
                     <div key={product.id} className="col-md-4 p-3">
@@ -42,6 +43,7 @@ function ViewStatProducts() {
                     </div>
                 ))}
             </div>
+            <Footer/>
         </div>
     );
 }
