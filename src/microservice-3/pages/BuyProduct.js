@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const BuyProduct = () => {
@@ -8,6 +8,22 @@ const BuyProduct = () => {
     const [paymentMethod, setPaymentMethod] = useState('');
     const [promoCode, setPromoCode] = useState('');
     const [message, setMessage] = useState('');
+    const [wallet, setWallet] = useState('');
+
+    useEffect(() => {
+        const fetchWallet = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/api/purchase/balance?userId=${userId}`);
+                setWallet(response.data);
+            } catch (error) {
+                console.error('Failed to fetch wallet balance');
+            }
+        };
+
+        if (userId) {
+            fetchWallet();
+        }
+    }, [userId]);
 
     const handleBuyProduct = async () => {
         try {
@@ -27,6 +43,7 @@ const BuyProduct = () => {
     return (
         <div style={styles.container}>
             <h2 style={styles.heading}>Buy Product</h2>
+            <div style={styles.balance}>Wallet Balance: {wallet}</div>
             <input
                 type="text"
                 placeholder="User ID"
@@ -85,6 +102,10 @@ const styles = {
     heading: {
         marginBottom: '20px',
         color: '#333',
+    },
+    balance: {
+        fontSize: '20px',
+        marginBottom: '20px',
     },
     input: {
         width: '100%',

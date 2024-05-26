@@ -1,10 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const TopUp = () => {
     const [userId, setUserId] = useState('');
     const [amount, setAmount] = useState(0);
     const [message, setMessage] = useState('');
+    const [wallet, setWallet] = useState(0);
+
+    useEffect(() => {
+        const fetchBalance = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/api/purchase/balance?userId=${userId}`);
+                setWallet(response.data);
+            } catch (error) {
+                console.error('Failed to fetch balance');
+            }
+        };
+
+        fetchBalance();
+    }, [userId]);
 
     const handleTopUp = async () => {
         try {
@@ -13,6 +27,8 @@ const TopUp = () => {
                 amount
             });
             setMessage('Top-up successful!');
+            // Setelah top-up berhasil, perbarui saldo
+            setWallet(prevWallet => prevWallet + amount);
         } catch (error) {
             setMessage('Top-up failed. Please try again.');
         }
@@ -21,6 +37,9 @@ const TopUp = () => {
     return (
         <div style={styles.container}>
             <h2 style={styles.heading}>Top Up Balance</h2>
+            <div style={styles.balance}>
+                Wallet Balance: {wallet}
+            </div>
             <div style={styles.formGroup}>
                 <input 
                     type="text" 
@@ -60,6 +79,11 @@ const styles = {
     heading: {
         marginBottom: '20px',
         color: '#333',
+    },
+    balance: {
+        marginBottom: '20px',
+        fontSize: '18px',
+        fontWeight: 'bold',
     },
     formGroup: {
         marginBottom: '15px',
