@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function NavBar() {
     const userLoggedIn = isLoggedIn();
+    const userRole = localStorage.getItem('userData');
 
     const handleLogout = () => {
         logout();
