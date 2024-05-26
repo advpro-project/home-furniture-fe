@@ -29,7 +29,8 @@ const Login = ({ setView }) => {
             setSuccessMessage('Login successful! Redirect to homepage in 1.5 seconds...');
 
             setTimeout(() => {
-                setView('home');
+                // Redirect to HomePage.js without setView
+                window.location.href = '/';
             }, 1500);
 
         } catch (error) {

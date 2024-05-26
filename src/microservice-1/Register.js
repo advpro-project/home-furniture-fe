@@ -50,7 +50,7 @@ const Register = ({ setView }) => {
             setSuccessMessage('Registration successful!');
 
             setTimeout(() => {
-                setView('login');
+                window.location.href = '/auth/login';
             }, 1500);
 
         } catch (error) {
