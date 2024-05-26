@@ -126,6 +126,8 @@ function ViewProducts() {
 
     return (
         <div className="m-3">
+
+            {/* display all products */}
             <h1>Furniture Products</h1>
             <button className="btn btn-secondary m-1" onClick={handleAddShow}>Add new Product</button>
             <div className="row">
