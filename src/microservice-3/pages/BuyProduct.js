@@ -20,7 +20,7 @@ const BuyProduct = () => {
             });
             setMessage('Purchase successful!');
         } catch (error) {
-            setMessage('Purchase failed. Please try again.');
+            setMessage(error.message);
         }
     };
 

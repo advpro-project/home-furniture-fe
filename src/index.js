@@ -20,7 +20,7 @@ const router = createBrowserRouter([
   { path: "/microservice3/*", element:<Microservice3Url />},
   { path: "/delivery/*", element:<DelivRoutes />},
   { path: "/", element: <HomePage /> },
-
+  { path: "/transaction/*", element: <Microservice3Url /> },
   // Microservice 1 - Authentication
   { path: "/auth/register", element: <Register /> },
   { path: "/auth/login", element: <Login /> },

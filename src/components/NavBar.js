@@ -25,6 +25,27 @@ function NavBar({ setView }) {
                             </li>
                         )}
                     </ul>
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        {userLoggedIn && (
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/transaction/buy" onClick={() => setView('buy')}>Buy Product</Link>
+                            </li>
+                        )}
+                    </ul>
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        {userLoggedIn && (
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/transaction/lists" onClick={() => setView('list')}>Transaction List</Link>
+                            </li>
+                        )}
+                    </ul>
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        {userLoggedIn && (
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/transaction/top-up" onClick={() => setView('top-up')}>Top Up Wallet</Link>
+                            </li>
+                        )}
+                    </ul>
                     <ul className="navbar-nav ml-auto">
                         {!userLoggedIn ? (
                             <>
@@ -32,7 +53,8 @@ function NavBar({ setView }) {
                                     <Link className="nav-link" to="/" onClick={() => setView('login')}>Login</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/" onClick={() => setView('register')}>Register</Link>
+                                    <Link className="nav-link" to="/"
+                                          onClick={() => setView('register')}>Register</Link>
                                 </li>
                             </>
                         ) : (
