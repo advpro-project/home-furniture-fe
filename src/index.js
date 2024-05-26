@@ -28,10 +28,6 @@ const router = createBrowserRouter([
   // Microservice 1 - Authentication
   { path: "/auth/register", element: <Register /> },
   { path: "/auth/login", element: <Login /> },
-  // Microservice 2 - Products and Promos
-  { path: "/products", element: <ViewProducts /> },
-  { path: "/promos", element: <ViewPromos /> },
-  { path: "/stats", element: <ViewStatProducts /> },
 ]);
 
 export default function App() {

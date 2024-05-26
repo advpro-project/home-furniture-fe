@@ -277,7 +277,7 @@ function ViewProducts() {
                 </div>
                 <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" onClick={handleAddClose}>Close</button>
-                    <button type="button" className="btn btn-secondary" onClick={() => { addProduct(newProduct); handleClose(); }}>Save Product</button>
+                    <button type="button" className="btn btn-secondary" onClick={() => { addProduct(newProduct); handleAddClose(); }}>Save Product</button>
                 </div>
                 </div>
             </div>

@@ -197,7 +197,7 @@ function ViewPromos() {
                 </div>
                 <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" onClick={handleAddClose}>Close</button>
-                    <button type="button" className="btn btn-secondary" onClick={() => { addPromo(newPromo); handleClose(); }}>Save promo</button>
+                    <button type="button" className="btn btn-secondary" onClick={() => { addPromo(newPromo); handleAddClose(); }}>Save promo</button>
                 </div>
                 </div>
             </div>

@@ -1,7 +1,8 @@
 import React from 'react';
 import {Routes, Route} from 'react-router-dom'
 import DetailsPage from './pages/DetailsPage'
-import FurnitureListPage from './pages/FurnitureListPage';import ViewProducts from './viewProducts'
+import FurnitureListPage from './pages/FurnitureListPage';
+import ViewProducts from './viewProducts'
 import ViewPromos from './viewPromos'
 import ViewStatProducts from './viewStatProducts'
 
