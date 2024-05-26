@@ -1,5 +1,4 @@
 import './HomePage.css';
-import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 function HomePage() {
@@ -23,7 +22,6 @@ function HomePage() {
     return (
         <div className="homepage">
             {content}
-            <Footer />
         </div>
     );
 }

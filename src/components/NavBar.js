@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function NavBar() {
     const userLoggedIn = isLoggedIn();
+    const user = localStorage.getItem('userData');
+    const userRole = user ? JSON.parse(user).role : null;
 
     const handleLogout = () => {
         logout();
@@ -20,13 +22,23 @@ function NavBar() {
                 <div className="navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link className="nav-link" to="/furniture/list">Furniture</Link>
+                            <Link className="nav-link" to="/furniture/list">Furniture List</Link>
                         </li>
+                        {userRole === "ADMIN" ? (
+                            <>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="...">Manage Furniture</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="...">Manage Promo Code</Link>
+                            </li>
+                            </>
+                        ) : null}
                     </ul>
                     <ul className="navbar-nav ml-auto">
                         {!userLoggedIn ? (
                             <>
-                                <li className="nav-item">
+                            <li className="nav-item">
                                     <Link className="nav-link" to="/auth/login">Login</Link>
                                 </li>
                                 <li className="nav-item">
