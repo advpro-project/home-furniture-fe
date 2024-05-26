@@ -4,8 +4,12 @@ const baseURL = 'http://35.226.59.207';
 
 function ViewProducts() {
     const [products, setProducts] = useState([]);
+
     const [show, setShow] = useState(false);
     const [currentProduct, setCurrentProduct] = useState({});
+
+    const [showAddModal, setShowAddModal] = useState(false);
+    const [newProduct, setNewProduct] = useState({});
 
     const handleShow = (product) => {
         setCurrentProduct(product);
@@ -15,6 +19,9 @@ function ViewProducts() {
     const handleClose = () => {
         setShow(false);
     };
+
+    const handleAddShow = () => setShowAddModal(true);
+    const handleAddClose = () => setShowAddModal(false);
 
     const fetchProducts = async () => {
         try {
@@ -73,6 +80,7 @@ function ViewProducts() {
             }
     
             const data = await response.json();
+            await fetchProducts();
             return data;
         } catch (error) {
             console.error('Error:', error);
@@ -90,7 +98,7 @@ function ViewProducts() {
             }
     
             const data = await response.json();
-            ViewProducts();
+            await fetchProducts();
             return data;
         } catch (error) {
             console.error('Error:', error);
@@ -119,7 +127,7 @@ function ViewProducts() {
     return (
         <div className="m-3">
             <h1>Furniture Products</h1>
-            <button className="btn btn-secondary m-1" onClick={() => addProduct()}>Add new Product</button>
+            <button className="btn btn-secondary m-1" onClick={handleAddShow}>Add new Product</button>
             <div className="row">
                 {Object.values(products).map(product => (
                     <div key={product.id} className="col-md-4 p-3">
@@ -142,7 +150,8 @@ function ViewProducts() {
                     </div>
                 ))}
             </div>
-            
+
+            {/* modal untuk update product */}
             <div className={`modal ${show ? 'show d-block' : 'd-none'}`} tabIndex="-1">
             <div className="modal-dialog">
                 <div className="modal-content">
@@ -202,6 +211,71 @@ function ViewProducts() {
                 <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" onClick={handleClose}>Close</button>
                     <button type="button" className="btn btn-secondary" onClick={() => { updateProduct(currentProduct.internalId, currentProduct); handleClose(); }}>Save Changes</button>
+                </div>
+                </div>
+            </div>
+            </div>
+
+            {/* modal untuk add product */}
+            <div className={`modal ${showAddModal ? 'show d-block' : 'd-none'}`} tabIndex="-1">
+            <div className="modal-dialog">
+                <div className="modal-content">
+                <div className="modal-header">
+                    <h5 className="modal-title">Add New Product</h5>
+                </div>
+                <div className="modal-body">
+                    <form>
+                        <div className="form-group">
+                            <label htmlFor="productName">Product Name</label>
+                            <input type="text" className="form-control" id="productName" onChange={e => setNewProduct({...newProduct, name: e.target.value})}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="productType">Product Type</label>
+                            <select className="form-control" id="productType" onChange={e => setNewProduct({...newProduct, type: e.target.value})}>
+                                <option value="type1">Seating</option>
+                                <option value="type2">Tables</option>
+                                <option value="type3">Storage</option>
+                                <option value="type4">Beds</option>
+                                <option value="type5">Desks</option>
+                                <option value="type6">Outdoor Furniture</option>
+                                <option value="type7">Entertainment Units</option>
+                                <option value="type8">Accent Furniture</option>
+                                <option value="type9">Office Furniture</option>
+                                <option value="type10">Dining Furniture</option>
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="productDescription">Product Description</label>
+                            <input type="text" className="form-control" id="productName" onChange={e => setNewProduct({...newProduct, description: e.target.value})}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="productImageURL">Product imageURL</label>
+                            <input type="text" className="form-control" id="productName" onChange={e => setNewProduct({...newProduct, imageUrl: e.target.value})}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="productSoldQuantity">Product Sold Quantity</label>
+                            <input type="text" className="form-control" id="productName" onChange={e => setNewProduct({...newProduct, soldQuantity: e.target.value})}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="productOriginalPrice">Product Original Price</label>
+                            <input type="text" className="form-control" id="productName" onChange={e => setNewProduct({...newProduct, originalPrice: e.target.value})}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="productDiscountedPrice">Product Discounted Price</label>
+                            <input type="text" className="form-control" id="productName" onChange={e => setNewProduct({...newProduct, discountedPrice: e.target.value})}/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="productHasDiscount">Product hasDiscount</label>
+                            <select className="form-control" id="productHasDiscount" onChange={e => setNewProduct({...newProduct, hasDiscount: e.target.value})}>
+                                <option value="type1">true</option>
+                                <option value="type2">false</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div className="modal-footer">
+                    <button type="button" className="btn btn-secondary" onClick={handleAddClose}>Close</button>
+                    <button type="button" className="btn btn-secondary" onClick={() => { addProduct(newProduct); handleClose(); }}>Save Product</button>
                 </div>
                 </div>
             </div>
