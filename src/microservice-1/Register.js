@@ -65,7 +65,7 @@ const Register = ({ setView }) => {
 
     return (
         <div className="container">
-            <h2 className="fw-bold">Register</h2>
+            <h2 className="display-6 fw-bold">Register</h2>
             <form onSubmit={handleRegister} className="mt-4">
                 <div className="mb-3">
                     <label htmlFor="fullName" className="form-label">Full Name</label>

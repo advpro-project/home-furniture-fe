@@ -1,0 +1,54 @@
+/* layout.css */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    /* optional: styling for your header */
+}
+
+main {
+    flex: 1;
+    padding: 20px; /* Adjust the padding as needed */
+    box-sizing: border-box; /* Ensures padding doesn't add to the element's total width/height */
+}
+
+footer {
+    background-color: #f8f9fa; /* light background */
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: auto; /* ensures footer is at the bottom */
+}
+
+.footer .container {
+    padding: 1rem;
+}
+
+.footer .row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer h5 {
+    font-weight: bold;
+}
+
+.footer p {
+    margin: 0;
+}
+
+.text-light {
+    color: #ffffff;
+}
+
+.bg-dark {
+    background-color: #343a40;
+}

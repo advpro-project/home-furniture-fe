@@ -22,7 +22,6 @@ function HomePage() {
     return (
         <div className="homepage">
             {content}
-            <Footer />
         </div>
     );
 }

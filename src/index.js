@@ -26,11 +26,11 @@ const router = createBrowserRouter([
   { path: "/", element:<Layout />, 
   children: [
     { path: "/", element:<HomePage  />},
+    { path: "auth/*", element:<Microservice1Url />},
     { path: "furniture/*", element:<Microservice2Url />},
     { path: "microservice3/*", element:<Microservice3Url />},
     { path: "/delivery/*", element:<DelivRoutes />},
   ]},
-  { path: "auth/*", element:<Microservice1Url />},
 
 ]);
 
