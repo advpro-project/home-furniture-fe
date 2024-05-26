@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Footer from '../components/Footer';
+import Header from '../components/Header';
 const baseURL = 'http://35.226.59.207';
 // const baseURL = 'http://localhost:8080';
 
@@ -178,7 +179,6 @@ function ViewProducts() {
 
     return (
         <div className="m-3">
-
             {/* display all products */}
             <h1 class="display-4" >Furniture Products</h1>
             <button className="btn btn-secondary m-1" onClick={handleAddShow}>Add new Product</button>
@@ -337,7 +337,7 @@ function ViewProducts() {
                 </div>
             </div>
             </div>
-            <Footer/>
+            
         </div>
     );
 }

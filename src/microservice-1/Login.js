@@ -29,7 +29,8 @@ const Login = ({ setView }) => {
             setSuccessMessage('Login successful! Redirect to homepage in 1.5 seconds...');
 
             setTimeout(() => {
-                setView('home');
+                // Redirect to HomePage.js without setView
+                window.location.href = '/';
             }, 1500);
 
         } catch (error) {
@@ -44,7 +45,7 @@ const Login = ({ setView }) => {
 
     return (
         <div className="container">
-            <h2 className="fw-bold">Login</h2>
+            <h2 className="display-6 fw-bold">Login</h2>
             <form onSubmit={handleLogin} className="mt-4">
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email</label>

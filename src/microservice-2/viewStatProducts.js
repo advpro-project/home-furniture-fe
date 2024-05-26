@@ -43,7 +43,7 @@ function ViewStatProducts() {
                     </div>
                 ))}
             </div>
-            <Footer/>
+            
         </div>
     );
 }

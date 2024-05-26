@@ -203,7 +203,7 @@ function ViewPromos() {
                 </div>
             </div>
             </div>
-            <Footer/>
+            
         </div>
     );
 }
