@@ -1,13 +1,10 @@
-// src/components/DeliveryForm.js
 import React, { useState, useEffect } from 'react';
 import { getFurnitures } from './FetchData';
-import { isLoggedIn } from '../microservice-1/authUtils';
 
 const DeliveryForm = () => {
     const [furnitures, setFurnitures] = useState([]);
     const [userData, setUserData] = useState(null);
-    const [selectedFurniture] = useState([]);
-    const userLoggedIn = isLoggedIn();
+    const [furnitureList, setFurnitureList] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -15,8 +12,9 @@ const DeliveryForm = () => {
                 const response = await getFurnitures();
                 const furnituresData = response.content; 
                 setFurnitures(furnituresData);
+
+                setFurnitureList(furnituresData);
                 
-                // Retrieve user data from localStorage
                 const UserData = localStorage.getItem('userData');
                 if (UserData) {
                     const parsedUserData = JSON.parse(UserData);
@@ -32,29 +30,41 @@ const DeliveryForm = () => {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const transportation = { type: null };
+
+        // Debug logs
+        console.log('Furniture list:', furnitureList);
+        console.log('User email:', userData ? userData.email : 'No user data');
+        console.log('Transportation:', transportation);
+
+        const requestBody = {
+            status: "MENUNGGU_VERIFIKASI",
+            transportation: transportation,
+            furnitureList: furnitureList, 
+            userEmail: userData.email,
+        };
+
         try {
             const response = await fetch('http://34.101.59.10:8081/deliveries/delivery/create', {
+                mode: 'cors',
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    status: "MENUNGGU_VERIFIKASI",
-                    furnitureList: selectedFurniture,
-                    userDelivery: userLoggedIn
-                }),
+                body: requestBody,
             });
-            
+            console.log(response.body)
             if (!response.ok) {
+                console.log(response)
                 throw new Error('Failed to create delivery');
             }
-    
+
             console.log('Delivery created successfully!');
         } catch (error) {
             console.error('Error creating delivery:', error);
         }
     };
-    
 
     return (
         <div>
