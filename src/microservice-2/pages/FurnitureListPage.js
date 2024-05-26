@@ -83,6 +83,7 @@ function FurnitureListPage() {
     const handleImageError = (e) => {
         e.target.src = "https://via.placeholder.com/400";
     };
+    
 
     useEffect(() => {
         async function fetchcontent() {
@@ -225,7 +226,7 @@ function FurnitureListPage() {
         <div class="bg-white shadow-md rounded-lg flex my-2 mx-4">
         <img
           src={props.imageUrl}
-          onErro={handleImageError}
+          onError={handleImageError}
           className="card-img-left"
           alt={props.name}
           style={{ width: '150px', height: '150px', objectFit: 'cover' }}
@@ -240,7 +241,7 @@ function FurnitureListPage() {
         </Link>
         ))}
     </div>
-    )
+    );
 }
 
 export default FurnitureListPage;
