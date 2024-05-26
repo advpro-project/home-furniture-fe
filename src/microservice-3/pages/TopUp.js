@@ -10,7 +10,7 @@ const TopUp = () => {
     useEffect(() => {
         const fetchBalance = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/api/purchase/balance?userId=${userId}`);
+                const response = await axios.get(`http://34.101.59.10/api/purchase/balance?userId=${userId}`);
                 setWallet(response.data);
             } catch (error) {
                 console.error('Failed to fetch balance');
@@ -22,7 +22,7 @@ const TopUp = () => {
 
     const handleTopUp = async () => {
         try {
-            const response = await axios.post('http://localhost:8080/api/purchase/top-up', {
+            const response = await axios.post('http://34.101.59.10/api/purchase/top-up', {
                 userId,
                 amount
             });
