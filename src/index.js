@@ -31,7 +31,7 @@ const router = createBrowserRouter([
     { path: "microservice3/*", element:<Microservice3Url />},
     { path: "/delivery/*", element:<DelivRoutes />},
   ]},
-
+  { path: "/transaction/*", element: <Microservice3Url /> },
 ]);
 
 export default function App() {

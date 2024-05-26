@@ -50,6 +50,69 @@ function NavBar() {
                         ) : (null)}
 
                     </ul>
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        {userLoggedIn && (
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/transaction/buy" onClick={() => setView('buy')}>Buy Product</Link>
+                            </li>
+                        )}
+                    </ul>
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        {userLoggedIn && (
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/transaction/lists" onClick={() => setView('list')}>Transaction List</Link>
+                            </li>
+                        )}
+                    </ul>
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/furniture/list">Furniture List</Link>
+                        </li>
+                        {userRole === "ADMIN" ? (
+                            <>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="...">Manage Furniture</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="...">Manage Promo Code</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="...">Admin Track Delivery</Link>
+                            </li>
+                            </>
+                        ) : (null)}
+
+                        {userRole === "PEMBELI" ? (
+                            <>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="...">Pembeli Track Delivery</Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/transaction/top-up" onClick={() => setView('top-up')}>Top Up Wallet</Link>
+                            </li>
+                        )}
+                    </ul>
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        {userLoggedIn && (
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/transaction/buy" onClick={() => setView('buy')}>Buy Product</Link>
+                            </li>
+                        )}
+                    </ul>
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        {userLoggedIn && (
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/transaction/lists" onClick={() => setView('list')}>Transaction List</Link>
+                            </li>
+                        )}
+                    </ul>
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        {userLoggedIn && (
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/transaction/top-up" onClick={() => setView('top-up')}>Top Up Wallet</Link>
+                            </li>
+                        )}
+                    </ul>
                     <ul className="navbar-nav ml-auto">
                         {!userLoggedIn ? (
                             <>
@@ -57,7 +120,7 @@ function NavBar() {
                                     <Link className="nav-link" to="/auth/login">Login</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link className="nav-link" to="/auth/register">Register</Link>
+                                    <Link className="nav-link" to="/" onClick={() => setView('register')}>Register</Link>
                                 </li>
                             </>
                         ) : (
